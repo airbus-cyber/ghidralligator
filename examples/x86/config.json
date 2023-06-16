@@ -1,0 +1,73 @@
+{
+    "sla_file"     : "specfiles/x86.sla",
+    
+    "set_variable_default": [
+        {"name": "addrsize", "value": "1"},
+        {"name": "opsize", "value": "1"}
+    ],
+    
+    "target"       : "x86_test",    
+    
+    "start_address": "0x8049d7e",
+    "stop_addresses": [ "0x8049f94" ],
+
+    "track_exec_operations" : "true",
+
+    "registers": [
+        { "name": "EAX" ,   "value": "0x80e0320" },
+        { "name": "ECX" ,   "value": "0x20ca8" },
+        { "name": "EDX" ,   "value": "0x80e0320" },
+        { "name": "EBX" ,   "value": "0x80dc000" },
+        { "name": "ESP" ,   "value": "0xffffce14" },
+        { "name": "EBP" ,   "value": "0xffffce78" },
+        { "name": "ESI" ,   "value": "0xffffce90" },
+        { "name": "EDI" ,   "value": "0x80e0317" },
+        { "name": "eflags" ,   "value": "0x202" },
+        { "name": "CS" ,   "value": "0x23" },
+        { "name": "SS" ,   "value": "0x2b" },
+        { "name": "DS" ,   "value": "0x2b" },
+        { "name": "ES" ,   "value": "0x2b" },
+        { "name": "FS" ,   "value": "0x0" },
+        { "name": "GS" ,   "value": "0x63" }
+
+	],
+    
+    "emu_heap": {
+        "address": "0xc0000000",
+        "size": "0x100000"
+    },
+    
+    "sections": [
+        {
+            "name": "0x8049000",
+            "address": "0x8049000",
+            "size": "0x65000",
+            "path": "./examples/x86/dump/0x8049000-0x80ae000.bin",
+            "perms": "READ|EXEC"
+        },
+        {
+            "name": "0x80ae000",
+            "address": "0x80ae000",
+            "size": "0x2b000",
+            "path": "./examples/x86/dump/0x80ae000-0x80d9000.bin",
+            "perms": "READ"
+        },
+        {
+            "name": "0x80da000",
+            "address": "0x80da000",
+            "size": "0x4000",
+            "path": "./examples/x86/dump/0x80da000-0x80de000.bin",
+            "perms": "READ|WRITE"
+        },
+        {
+            "name": "0xfffdd000",
+            "address": "0xfffdd000",
+            "size": "0x21000",
+            "path": "./examples/x86/dump/0xfffdd000-0xffffe000.bin",
+            "perms": "READ|WRITE"
+        }
+
+
+    ]
+
+}

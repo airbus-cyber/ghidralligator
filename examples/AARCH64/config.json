@@ -1,0 +1,111 @@
+{
+    "sla_file"     : "specfiles/AARCH64_AppleSilicon.sla",
+    
+    "target"       : "aarch64_test",    
+    
+    "start_address": "0x100003bac",
+    "stop_addresses": [ "0x100003ed8" ],
+
+    "track_exec_operations" : "true",
+
+    "registers": [
+        { "name": "x0",   "value": "0x0000000000000014" },
+        { "name": "x1",   "value": "0x0000000000000000" },
+        { "name": "x2",   "value": "0x00000000000120a8" },
+        { "name": "x3",   "value": "0x0000000101008214" },
+        { "name": "x4",   "value": "0x0000000100003f82" },
+        { "name": "x5",   "value": "0x000000016fdff3a0" },
+        { "name": "x6",   "value": "0x000000000000000a" },
+        { "name": "x7",   "value": "0x0000000000000001" },
+        { "name": "x8",   "value": "0x0000000000000000" },
+        { "name": "x9",   "value": "0x000000000000000d" },
+        { "name": "x10",   "value": "0x0000000000000002" },
+        { "name": "x11",   "value": "0x00000000fffffffd" },
+        { "name": "x12",   "value": "0x0000010000000000" },
+        { "name": "x13",   "value": "0x0000000000000000" },
+        { "name": "x14",   "value": "0x0000000000000000" },
+        { "name": "x15",   "value": "0x0000000000000000" },
+        { "name": "x16",   "value": "0x000000018c2048ec" },
+        { "name": "x17",   "value": "0x00000001ebd64e58" },
+        { "name": "x18",   "value": "0x0000000000000000" },
+        { "name": "x19",   "value": "0x0000000100003a74" },
+        { "name": "x20",   "value": "0x000000010000c000" },
+        { "name": "x21",   "value": "0x000000010000d910" },
+        { "name": "x22",   "value": "0x000000016fdff530" },
+        { "name": "x23",   "value": "0x000000018bf66396" },
+        { "name": "x24",   "value": "0x000000016fdff4b0" },
+        { "name": "x25",   "value": "0x0000000000000001" },
+        { "name": "x26",   "value": "0x0000000000000000" },
+        { "name": "x27",   "value": "0x0000000000000000" },
+        { "name": "x28",   "value": "0x0000000000000000" },
+        { "name": "x29",   "value": "0x000000016fdff410" },
+        { "name": "x30",   "value": "0x0000000100003e2c" },
+        { "name": "sp",   "value": "0x000000016fdff3a0" },
+        { "name": "pc",   "value": "0x0000000100003c0c" }
+	],
+    
+    "emu_heap": {
+        "address": "0xc000000000000000",
+        "size": "0x100000"
+    },
+    
+    "sections": [
+            { "name"   : "test_1",
+              "address": "0x0000000100000000",
+              "offset": "0x0",
+              "size": "0x4000",
+              "path": "./examples/AARCH64/dump/0x100000000-0x100004000.bin",
+              "perms": "READ|EXEC"
+            },
+            { "name"   : "test_6",
+              "address": "0x0000000100004000",
+              "offset": "0x0",
+              "size": "0x4000",
+              "path": "./examples/AARCH64/dump/0x100004000-0x100008000.bin",
+              "perms": "READ|WRITE"
+            },
+            { "name"   : "/usr/lib/system/libsystem_malloc.dylib_1",
+              "address": "0x000000018c064000",
+              "offset": "0x0",
+              "size": "0x2bffc",
+              "path": "./examples/AARCH64/dump/0x18c064000-0x18c08fffc.bin",
+              "perms": "READ|EXEC"
+            },
+            { "name"   : "/usr/lib/system/libsystem_c.dylib_1",
+              "address": "0x000000018c0db000",
+              "offset": "0x0",
+              "size": "0x7eff8",
+              "path": "./examples/AARCH64/dump/0x18c0db000-0x18c159ff8.bin",
+              "perms": "READ|EXEC"
+            },
+            { "name"   : "/usr/lib/system/libsystem_c.dylib_24",
+              "address": "0x00000001e72484f8",
+              "offset": "0x0",
+              "size": "0x2b88",
+              "path": "./examples/AARCH64/dump/0x1e72484f8-0x1e724b080.bin",
+              "perms": "READ|WRITE"
+            },
+            { "name"   : "/usr/lib/system/libsystem_platform.dylib_1",
+              "address": "0x000000018c26f000",
+              "offset": "0x0",
+              "size": "0x6ffc",
+              "path": "./examples/AARCH64/dump/0x18c26f000-0x18c275ffc.bin",
+              "perms": "READ|EXEC"
+           },
+           { "name"   : "stack",
+              "address": "0x16fd00000",
+              "offset": "0x0",
+              "size": "0xfffff",
+              "path": "./examples/AARCH64/dump/stack.bin",
+              "perms": "READ|WRITE"
+            },
+            { "name"   : "0x1ebd60000-0x1ebd70000",
+              "address": "0x1ebd60000",
+              "offset": "0x0",
+              "size": "0xffff",
+              "path": "./examples/AARCH64/dump/0x1ebd60000-0x1ebd70000.bin",
+              "perms": "READ|WRITE"
+            }
+   ]
+
+}

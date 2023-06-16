@@ -1,0 +1,117 @@
+com_dbg/xml.o com_dbg/depend.lib_sla : xml.cc xml.hh types.h
+com_dbg/marshal.o com_dbg/depend.lib_sla : marshal.cc marshal.hh xml.hh types.h translate.hh pcoderaw.hh \
+ address.hh space.hh error.hh opbehavior.hh opcodes.hh float.hh
+com_dbg/space.o com_dbg/depend.lib_sla : space.cc space.hh error.hh types.h marshal.hh xml.hh \
+ translate.hh pcoderaw.hh address.hh opbehavior.hh opcodes.hh float.hh
+com_dbg/float.o com_dbg/depend.lib_sla : float.cc float.hh xml.hh types.h address.hh space.hh error.hh \
+ marshal.hh
+com_dbg/address.o com_dbg/depend.lib_sla : address.cc address.hh space.hh error.hh types.h marshal.hh \
+ xml.hh translate.hh pcoderaw.hh opbehavior.hh opcodes.hh float.hh
+com_dbg/pcoderaw.o com_dbg/depend.lib_sla : pcoderaw.cc pcoderaw.hh address.hh space.hh error.hh types.h \
+ marshal.hh xml.hh opbehavior.hh opcodes.hh translate.hh float.hh
+com_dbg/translate.o com_dbg/depend.lib_sla : translate.cc translate.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh float.hh
+com_dbg/opcodes.o com_dbg/depend.lib_sla : opcodes.cc opcodes.hh types.h
+com_dbg/globalcontext.o com_dbg/depend.lib_sla : globalcontext.cc globalcontext.hh pcoderaw.hh address.hh \
+ space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh \
+ partmap.hh
+com_dbg/sleigh.o com_dbg/depend.lib_sla : sleigh.cc sleigh.hh sleighbase.hh translate.hh pcoderaw.hh \
+ address.hh space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh \
+ opcodes.hh float.hh slghsymbol.hh semantics.hh context.hh \
+ globalcontext.hh partmap.hh slghpatexpress.hh slghpattern.hh \
+ loadimage.hh
+com_dbg/pcodeparse.o com_dbg/depend.lib_sla : pcodeparse.cc pcodeparse.hh pcodecompile.hh slghsymbol.hh \
+ semantics.hh context.hh globalcontext.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh \
+ slghpatexpress.hh slghpattern.hh sleighbase.hh translate.hh float.hh
+com_dbg/pcodecompile.o com_dbg/depend.lib_sla : pcodecompile.cc pcodecompile.hh slghsymbol.hh \
+ semantics.hh context.hh globalcontext.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh \
+ slghpatexpress.hh slghpattern.hh
+com_dbg/sleighbase.o com_dbg/depend.lib_sla : sleighbase.cc sleighbase.hh translate.hh pcoderaw.hh \
+ address.hh space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh \
+ opcodes.hh float.hh slghsymbol.hh semantics.hh context.hh \
+ globalcontext.hh partmap.hh slghpatexpress.hh slghpattern.hh
+com_dbg/slghsymbol.o com_dbg/depend.lib_sla : slghsymbol.cc slghsymbol.hh semantics.hh context.hh \
+ globalcontext.hh pcoderaw.hh address.hh space.hh error.hh types.h \
+ marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh slghpatexpress.hh \
+ slghpattern.hh sleighbase.hh translate.hh float.hh
+com_dbg/slghpatexpress.o com_dbg/depend.lib_sla : slghpatexpress.cc slghpatexpress.hh slghpattern.hh \
+ context.hh globalcontext.hh pcoderaw.hh address.hh space.hh error.hh \
+ types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh \
+ sleighbase.hh translate.hh float.hh slghsymbol.hh semantics.hh
+com_dbg/slghpattern.o com_dbg/depend.lib_sla : slghpattern.cc slghpattern.hh context.hh globalcontext.hh \
+ pcoderaw.hh address.hh space.hh error.hh types.h marshal.hh xml.hh \
+ opbehavior.hh opcodes.hh partmap.hh
+com_dbg/semantics.o com_dbg/depend.lib_sla : semantics.cc semantics.hh context.hh globalcontext.hh \
+ pcoderaw.hh address.hh space.hh error.hh types.h marshal.hh xml.hh \
+ opbehavior.hh opcodes.hh partmap.hh translate.hh float.hh
+com_dbg/context.o com_dbg/depend.lib_sla : context.cc context.hh globalcontext.hh pcoderaw.hh address.hh \
+ space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh \
+ partmap.hh slghsymbol.hh semantics.hh slghpatexpress.hh slghpattern.hh \
+ translate.hh float.hh
+com_dbg/filemanage.o com_dbg/depend.lib_sla : filemanage.cc filemanage.hh
+com_dbg/loadimage.o com_dbg/depend.lib_sla : loadimage.cc loadimage.hh address.hh space.hh error.hh \
+ types.h marshal.hh xml.hh
+com_dbg/memstate.o com_dbg/depend.lib_sla : memstate.cc memstate.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh loadimage.hh \
+ translate.hh float.hh
+com_dbg/emulate.o com_dbg/depend.lib_sla : emulate.cc emulate.hh memstate.hh pcoderaw.hh address.hh \
+ space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh \
+ loadimage.hh translate.hh float.hh
+com_dbg/opbehavior.o com_dbg/depend.lib_sla : opbehavior.cc opbehavior.hh error.hh types.h opcodes.hh \
+ translate.hh pcoderaw.hh address.hh space.hh marshal.hh xml.hh float.hh
+com_dbg/xml.o com_dbg/depend.lib_sla : xml.hh types.h
+com_dbg/types.o com_dbg/depend.lib_sla : types.h
+com_dbg/marshal.o com_dbg/depend.lib_sla : marshal.hh xml.hh types.h
+com_dbg/translate.o com_dbg/depend.lib_sla : translate.hh pcoderaw.hh address.hh space.hh error.hh \
+ types.h marshal.hh xml.hh opbehavior.hh opcodes.hh float.hh
+com_dbg/pcoderaw.o com_dbg/depend.lib_sla : pcoderaw.hh address.hh space.hh error.hh types.h marshal.hh \
+ xml.hh opbehavior.hh opcodes.hh
+com_dbg/address.o com_dbg/depend.lib_sla : address.hh space.hh error.hh types.h marshal.hh xml.hh
+com_dbg/space.o com_dbg/depend.lib_sla : space.hh error.hh types.h marshal.hh xml.hh
+com_dbg/error.o com_dbg/depend.lib_sla : error.hh types.h
+com_dbg/opbehavior.o com_dbg/depend.lib_sla : opbehavior.hh error.hh types.h opcodes.hh
+com_dbg/opcodes.o com_dbg/depend.lib_sla : opcodes.hh
+com_dbg/float.o com_dbg/depend.lib_sla : float.hh xml.hh types.h
+com_dbg/globalcontext.o com_dbg/depend.lib_sla : globalcontext.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh
+com_dbg/partmap.o com_dbg/depend.lib_sla : partmap.hh
+com_dbg/sleigh.o com_dbg/depend.lib_sla : sleigh.hh sleighbase.hh translate.hh pcoderaw.hh address.hh \
+ space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh \
+ float.hh slghsymbol.hh semantics.hh context.hh globalcontext.hh \
+ partmap.hh slghpatexpress.hh slghpattern.hh
+com_dbg/sleighbase.o com_dbg/depend.lib_sla : sleighbase.hh translate.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh float.hh \
+ slghsymbol.hh semantics.hh context.hh globalcontext.hh partmap.hh \
+ slghpatexpress.hh slghpattern.hh
+com_dbg/slghsymbol.o com_dbg/depend.lib_sla : slghsymbol.hh semantics.hh context.hh globalcontext.hh \
+ pcoderaw.hh address.hh space.hh error.hh types.h marshal.hh xml.hh \
+ opbehavior.hh opcodes.hh partmap.hh slghpatexpress.hh slghpattern.hh
+com_dbg/semantics.o com_dbg/depend.lib_sla : semantics.hh context.hh globalcontext.hh pcoderaw.hh \
+ address.hh space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh \
+ opcodes.hh partmap.hh
+com_dbg/context.o com_dbg/depend.lib_sla : context.hh globalcontext.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh
+com_dbg/slghpatexpress.o com_dbg/depend.lib_sla : slghpatexpress.hh slghpattern.hh context.hh \
+ globalcontext.hh pcoderaw.hh address.hh space.hh error.hh types.h \
+ marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh
+com_dbg/slghpattern.o com_dbg/depend.lib_sla : slghpattern.hh context.hh globalcontext.hh pcoderaw.hh \
+ address.hh space.hh error.hh types.h marshal.hh xml.hh opbehavior.hh \
+ opcodes.hh partmap.hh
+com_dbg/loadimage.o com_dbg/depend.lib_sla : loadimage.hh address.hh space.hh error.hh types.h marshal.hh \
+ xml.hh
+com_dbg/pcodeparse.o com_dbg/depend.lib_sla : pcodeparse.hh pcodecompile.hh slghsymbol.hh semantics.hh \
+ context.hh globalcontext.hh pcoderaw.hh address.hh space.hh error.hh \
+ types.h marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh \
+ slghpatexpress.hh slghpattern.hh sleighbase.hh translate.hh float.hh
+com_dbg/pcodecompile.o com_dbg/depend.lib_sla : pcodecompile.hh slghsymbol.hh semantics.hh context.hh \
+ globalcontext.hh pcoderaw.hh address.hh space.hh error.hh types.h \
+ marshal.hh xml.hh opbehavior.hh opcodes.hh partmap.hh slghpatexpress.hh \
+ slghpattern.hh
+com_dbg/filemanage.o com_dbg/depend.lib_sla : filemanage.hh
+com_dbg/memstate.o com_dbg/depend.lib_sla : memstate.hh pcoderaw.hh address.hh space.hh error.hh types.h \
+ marshal.hh xml.hh opbehavior.hh opcodes.hh loadimage.hh
+com_dbg/emulate.o com_dbg/depend.lib_sla : emulate.hh memstate.hh pcoderaw.hh address.hh space.hh \
+ error.hh types.h marshal.hh xml.hh opbehavior.hh opcodes.hh loadimage.hh \
+ translate.hh float.hh

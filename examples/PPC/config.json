@@ -1,0 +1,109 @@
+{
+    "sla_file"     : "./specfiles/ppc_32_be.sla",
+    "target"       : "ppc_test",    
+    
+    "start_address": "0x100008f8",
+    "stop_addresses": [ "0x10007a70" ],
+
+	"track_exec_operations" : "true",
+
+	
+	"registers": [
+			{ "name": "r0" , "value": "0x00000000" },
+			{ "name": "r1" , "value": "0xffff7f00" },
+			{ "name": "r2" , "value": "0x00000000" },
+			{ "name": "r3" , "value": "0x00000000" },
+			{ "name": "r4" , "value": "0x00000000" },
+			{ "name": "r5" , "value": "0x00000000" },
+			{ "name": "r6" , "value": "0x00000000" },
+			{ "name": "r7" , "value": "0x00000000" },
+			{ "name": "r8" , "value": "0x00000000" },
+			{ "name": "r9" , "value": "0x00000000" },
+			{ "name": "r10" , "value": "0x00000000" },
+			{ "name": "r11" , "value": "0x00000000" },
+			{ "name": "r12" , "value": "0x00000000" },
+			{ "name": "r13" , "value": "0x00000000" },
+			{ "name": "r14" , "value": "0x00000000" },
+			{ "name": "r15" , "value": "0x00000000" },
+			{ "name": "r16" , "value": "0x00000000" },
+			{ "name": "r17" , "value": "0x00000000" },
+			{ "name": "r18" , "value": "0x00000000" },
+			{ "name": "r19" , "value": "0x00000000" },
+			{ "name": "r20" , "value": "0x00000000" },
+			{ "name": "r21" , "value": "0x00000000" },
+			{ "name": "r22" , "value": "0x00000000" },
+			{ "name": "r23" , "value": "0x00000000" },
+			{ "name": "r24" , "value": "0x00000000" },
+			{ "name": "r25" , "value": "0x00000000" },
+			{ "name": "r26" , "value": "0x00000000" },
+			{ "name": "r27" , "value": "0x00000000" },
+			{ "name": "r28" , "value": "0x00000000" },
+			{ "name": "r29" , "value": "0x00000000" },
+			{ "name": "r30" , "value": "0x00000000" },
+			{ "name": "r31" , "value": "0x00000000" },
+			{ "name": "LR" , "value":  "0x00000000" },
+			{ "name": "CTR" , "value":  "0x00000000" }
+	],
+	
+    "emu_heap": {
+        "address": "0xc0000000",
+        "size": "0x100000"
+    },
+    
+	"sections": [
+		{ "name"   : ".text",
+		  "address": "0x100001a0",
+		  "offset" : "0x1a0",
+		  "size"   : "0x6702c",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ|EXEC"
+		},
+		{ "name"   : ".rodata",
+		  "address": "0x10068170",
+		  "offset" : "0x68170",
+		  "size"   : "0x15e6c",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ"
+		},
+		{ "name"   : ".data.rel.ro",
+		  "address": "0x1009faf0",
+		  "offset" : "0x8faf0",
+		  "size"   : "0x498",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ|WRITE"
+		},
+		{ "name"   : ".got2",
+		  "address": "0x1009ff88",
+		  "offset" : "0x8ff88",
+		  "size"   : "0x68",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ"
+		},
+		{ "name"   : ".got",
+		  "address": "0x1009fff0",
+		  "offset" : "0x8fff0",
+		  "size"   : "0x10",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ"
+		},
+		{ "name"   : ".data",
+		  "address": "0x100a0000",
+		  "offset" : "0x90000",
+		  "size"   : "0xdf0",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ|WRITE"
+		},
+		{ "name"   : ".sdata",
+		  "address": "0x100a0df0",
+		  "offset" : "0x90df0",
+		  "size"   : "0x84",
+		  "path"   : "./examples/PPC/test",
+		  "perms"  : "READ|WRITE"
+		},
+		{ "name"   : "stack",
+		  "address": "0xffff7000",
+		  "size"   : "0xfff",
+		  "perms"  : "READ|WRITE"
+	    }
+	]
+}

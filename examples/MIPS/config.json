@@ -1,0 +1,85 @@
+{
+    "sla_file"     : "./specfiles/mips32be.sla",
+    "target"       : "mips_test",    
+    
+    "start_address": "0x400ad8",
+    "stop_addresses": [ "0x407ce4" ],
+
+	"track_exec_operations" : "true",
+
+	
+	"registers": [
+			{ "name": "at" , "value": "0x00000000" },
+			{ "name": "v0" , "value": "0x00000000" },
+			{ "name": "v1" , "value": "0x00000000" },
+			{ "name": "a0" , "value": "0x00000000" },
+			{ "name": "a1" , "value": "0x00000000" },
+			{ "name": "a2" , "value": "0x00000000" },
+			{ "name": "a3" , "value": "0x00000000" },
+			{ "name": "t0" , "value": "0x00000000" },
+			{ "name": "t1" , "value": "0x00000000" },
+			{ "name": "t2" , "value": "0x00000000" },
+			{ "name": "t3" , "value": "0x00000000" },
+			{ "name": "t4" , "value": "0x00000000" },
+			{ "name": "t5" , "value": "0x00000000" },
+			{ "name": "t6" , "value": "0x00000000" },
+			{ "name": "t7" , "value": "0x00000000" },
+			{ "name": "t9" , "value": "0x400ad8" },
+			{ "name": "s0" , "value": "0x00000000" },
+			{ "name": "s1" , "value": "0x00000000" },
+			{ "name": "s2" , "value": "0x00000000" },
+			{ "name": "s3" , "value": "0x00000000" },
+			{ "name": "s4" , "value": "0x00000000" },
+			{ "name": "s5" , "value": "0x00000000" },
+			{ "name": "s6" , "value": "0x00000000" },
+			{ "name": "s7" , "value": "0x00000000" },
+			{ "name": "s8" , "value": "0x00000000" },
+			{ "name": "k0" , "value": "0x00000000" },
+			{ "name": "k1" , "value": "0x00000000" },
+			{ "name": "gp" , "value": "0x005b0580" },
+			{ "name": "sp" , "value": "0xffff7f00" },
+			{ "name": "s8" , "value": "0x00000000" },
+			{ "name": "ra" , "value": "0x00000000" }
+	],
+	
+    "emu_heap": {
+        "address": "0xc0000000",
+        "size": "0x100000"
+    },
+    
+	"sections": [
+        { "name"   : ".text",
+          "address": "0x004002e0",
+		  "offset" : "0x2e0",
+		  "size"   : "0x63f80",
+		  "path"   : "./examples/MIPS/test",
+		  "perms"  : "READ|EXEC"
+        },
+		{ "name"   : ".rodata",
+		  "address": "0x00465200",
+		  "offset" : "0x65200",
+		  "size"   : "0x146d0",
+		  "path"   : "./examples/MIPS/test",
+		  "perms"  : "READ"
+		},
+		{ "name"   : ".data",
+		  "address": "0x0048f7d0",
+		  "offset" : "0x7f7d0",
+		  "size"   : "0x1000",
+		  "path"   : "./examples/MIPS/test",
+		  "perms"  : "READ|WRITE"
+		},
+		{ "name"   : ".got",
+		  "address": "0x00490af0",
+		  "offset" : "0x80af0",
+		  "size"   : "0x3ec",
+		  "path"   : "./examples/MIPS/test",
+		  "perms"  : "READ"
+		},
+		{ "name"   : "stack",
+		  "address": "0xffff7000",
+		  "size"   : "0xfff",
+		  "perms"  : "READ|WRITE"
+	    }
+	]
+}
