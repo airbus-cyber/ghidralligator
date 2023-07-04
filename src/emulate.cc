@@ -27,7 +27,6 @@ void BreakTableCallBack::registerPcodeCallback(const string &name,BreakCallBack 
   vector<string> userops;
   trans->getUserOpNames(userops);
   for(int4 i=0;i<userops.size();++i) {
-    //printf("registerPcodeCallback: %s\n", userops[i].c_str());
     if (userops[i] == name) {
       pcodecallback[(uintb)i] = func;
       return;
@@ -408,6 +407,7 @@ void EmulatePcodeCache::executeBranch(void)
     uintm id = destaddr.getOffset();
     id = id + (uintm)current_op;
     current_op = id;
+    establishOp();
     if (current_op == opcache.size())
       fallthruOp();
     else if ((current_op < 0)||(current_op >= opcache.size()))
