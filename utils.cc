@@ -215,6 +215,27 @@ void log_error(const char* format, ...) {
 
 
 
+void emu_hexdump(uint64_t addr, size_t size, MemoryState *mem) {
+    AddrSpace *ram = mem->getTranslate()->getSpaceByName("ram");
+    uint8_t* pBuf = 0;
+
+    log_info("emu_hexdump 0x%lx - 0x%x\n", addr, size);
+
+    pBuf = (uint8_t*)malloc(size);
+    if (pBuf == NULL) {
+        goto END_EMU_HEXDUMP;
+    }
+    memset(pBuf, 0xee, size);
+    mem->getChunk(pBuf, ram, addr, size);
+    hexdump(pBuf, size);
+
+END_EMU_HEXDUMP:
+    if (pBuf != 0) {
+        free(pBuf);
+    }
+}
+
+
 
 // Hexdump of the given buffer for visualization and/or debug purposes
 void hexdump(const void* data, size_t size) {
@@ -222,7 +243,7 @@ void hexdump(const void* data, size_t size) {
     char ascii[17];
     size_t i, j;
     ascii[16] = '\0';
-    log_info("hexdump 0x%x - 0x%lx\n", data, size);
+    log_info("hexdump 0x%lx - 0x%x\n", data, size);
     for (i = 0; i < size; ++i) {
         log_info("%02X ", ((unsigned char*)data)[i]);
         if (((unsigned char*)data)[i] >= ' ' && ((unsigned char*)data)[i] <= '~') {

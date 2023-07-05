@@ -28,6 +28,7 @@ bool is_reg_file(const char *path);
 void log_debug(const char* format, ...);
 void log_info(const char* format, ...);
 void log_error(const char* format, ...);
+void emu_hexdump(uint64_t addr, size_t size, MemoryState *mem);
 void hexdump(const void* data, size_t size);
 void dump_register(EmulatePcodeCache* pEmul);
 MemoryState reset_registers(MemoryState memstate);
