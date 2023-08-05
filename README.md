@@ -99,7 +99,7 @@ Usage for a standard AFL++ fuzzing session:
 ```bash
 mkdir afl_inputs afl_outputs
 echo -n "AAAAAA" > ./afl_inputs/input.bin
-$ afl-fuzz -D -i ./afl_inputs -o ./afl_outputs/ -- ./ghidralligator -m fuzz -c examples/x86/config.json
+$ AFL_SKIP_BIN_CHECK=1 afl-fuzz -D -i ./afl_inputs -o ./afl_outputs/ -- ./ghidralligator -m fuzz -c examples/x86/config.json
 ```
 ![gif fuzzing](./docs/pictures/fuzz.gif)
 
