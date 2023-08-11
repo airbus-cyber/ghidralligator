@@ -43,7 +43,7 @@ Its main usage is for vulnerability research in close-source binaries, and espec
 
 Ghidralligator is the successor of [afl_ghidra_emu](https://github.com/airbus-cyber/afl_ghidra_emu). It greatly improves execution speed and includes useful features like heap memory corruption detection (ASAN). 
 
-A wide variety of memory corruptions can be detected: out-of-bounds read/write operations, use-after-free, double-free, read of unitialized memory, read/write/exec access violations...
+A wide variety of memory corruptions can be detected: out-of-bounds read/write operations, use-after-free, double-free, read of uninitialized memory, read/write/exec access violations...
 
 In order to run Ghidralligator the following steps must be done:
 
