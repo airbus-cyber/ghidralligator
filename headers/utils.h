@@ -30,6 +30,7 @@ void log_info(const char* format, ...);
 void log_error(const char* format, ...);
 void emu_hexdump(uint64_t addr, size_t size, MemoryState *mem);
 void hexdump(const void* data, size_t size);
+void hexdump_with_addr(const void* data, size_t size, uint64_t addr);
 void dump_register(EmulatePcodeCache* pEmul);
 MemoryState reset_registers(MemoryState memstate);
 void crash_handler(string msg, uint64_t address, uint64_t pc);

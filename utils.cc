@@ -227,7 +227,7 @@ void emu_hexdump(uint64_t addr, size_t size, MemoryState *mem) {
     }
     memset(pBuf, 0xee, size);
     mem->getChunk(pBuf, ram, addr, size);
-    hexdump(pBuf, size);
+    hexdump_with_addr(pBuf, size, addr);
 
 END_EMU_HEXDUMP:
     if (pBuf != 0) {
@@ -245,6 +245,41 @@ void hexdump(const void* data, size_t size) {
     ascii[16] = '\0';
     log_info("hexdump 0x%lx - 0x%x\n", data, size);
     for (i = 0; i < size; ++i) {
+        log_info("%02X ", ((unsigned char*)data)[i]);
+        if (((unsigned char*)data)[i] >= ' ' && ((unsigned char*)data)[i] <= '~') {
+            ascii[i % 16] = ((unsigned char*)data)[i];
+        } else {
+            ascii[i % 16] = '.';
+        }
+        if ((i+1) % 8 == 0 || i+1 == size) {
+            log_info(" ");
+            if ((i+1) % 16 == 0) {
+                log_info("|  %s \n", ascii);
+            } else if (i+1 == size) {
+                ascii[(i+1) % 16] = '\0';
+                if ((i+1) % 16 <= 8) {
+                    log_info(" ");
+                }
+                for (j = (i+1) % 16; j < 16; ++j) {
+                    log_info("   ");
+                }
+                log_info("|  %s \n", ascii);
+            }
+        }
+    }
+}
+
+
+void hexdump_with_addr(const void* data, size_t size, uint64_t addr) {
+
+    char ascii[17];
+    size_t i, j;
+    ascii[16] = '\0';
+    log_info("hexdump 0x%lx - 0x%x\n", addr, size);
+    for (i = 0; i < size; ++i) {
+        if (i % 0x10 == 0) {
+        	log_info("%016X   ", (addr+i));
+	}
         log_info("%02X ", ((unsigned char*)data)[i]);
         if (((unsigned char*)data)[i] >= ' ' && ((unsigned char*)data)[i] <= '~') {
             ascii[i % 16] = ((unsigned char*)data)[i];
