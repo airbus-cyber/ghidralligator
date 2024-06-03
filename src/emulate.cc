@@ -15,6 +15,8 @@
  */
 #include "emulate.hh"
 
+namespace ghidra {
+
 /// Any time the emulator is about to execute a user-defined pcode op with the given name,
 /// the indicated breakpoint is invoked first. The break table does \e not assume responsibility
 /// for freeing the breakpoint object.
@@ -407,7 +409,6 @@ void EmulatePcodeCache::executeBranch(void)
     uintm id = destaddr.getOffset();
     id = id + (uintm)current_op;
     current_op = id;
-    establishOp();
     if (current_op == opcache.size())
       fallthruOp();
     else if ((current_op < 0)||(current_op >= opcache.size()))
@@ -455,3 +456,5 @@ void EmulatePcodeCache::executeInstruction(void)
     executeCurrentOp();
   } while(!instruction_start);
 }
+
+} // End namespace ghidra
