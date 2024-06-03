@@ -22,6 +22,7 @@
 #include <ctime>
 #include "globals.h"
 
+using namespace ghidra;
 
 // set_variable_default config struct
 typedef struct {
