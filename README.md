@@ -109,7 +109,7 @@ $ AFL_SKIP_BIN_CHECK=1 afl-fuzz -D -i ./afl_inputs -o ./afl_outputs/ -- ./ghidra
 
 * Ghidralligator is based on Ghidra which is not designed to have high performance in emulation purpose. Thus it is not able to compete against classic fuzzer like afl_qemu on standard architectures (x86 linux / windows binaries).
 
-* As the [Ghidra](https://github.com/NationalSecurityAgency/ghidra) project is in constant evolution, it is not recommended to manually update the Ghidralligator dependencies for the future Ghidra versions. The tool was build and tested with the Ghidra 10.1.5 decompiler sources. It may break with future versions, and backward compatibility below the 10.1.5 version is not supported. This is transparent for the user, as the Ghidra dependencies are provided in this repo.
+* As the [Ghidra](https://github.com/NationalSecurityAgency/ghidra) project is in constant evolution, it is not recommended to manually update the Ghidralligator dependencies for the future Ghidra versions. The tool was build and tested with the Ghidra 11.0.3 decompiler sources. It may break with future versions, and backward compatibility below the 11.0.3 version is not supported. This is transparent for the user, as the Ghidra dependencies are provided in this repo.
 
 ## Licenses
 Ghidralligator is released under the [Apache licence version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).

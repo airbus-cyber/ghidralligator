@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+%define api.prefix {pcode}
 %{
 #include "pcodeparse.hh"
 
-  //#define YYERROR_VERBOSE
-  extern int yylex(void);
-  static PcodeSnippet *pcode;
-  extern int yydebug;
-  extern int yyerror(const char *str );
+//#define YYERROR_VERBOSE
+namespace ghidra {
+
+extern int pcodelex(void);
+static PcodeSnippet *pcode;
+extern int pcodeerror(const char *str );
 %}
 
 %union {
@@ -38,6 +40,7 @@
   LabelSymbol *labelsym;
   StartSymbol *startsym;
   EndSymbol *endsym;
+  Next2Symbol *next2sym;
   OperandSymbol *operandsym;
   VarnodeSymbol *varsym;
   SpecificSymbol *specsym;
@@ -76,6 +79,7 @@
 %token <operandsym> OPERANDSYM
 %token <startsym> STARTSYM
 %token <endsym> ENDSYM
+%token <next2sym> NEXT2SYM
 %token <labelsym> LABELSYM
 
 %type <param> paramlist
@@ -195,6 +199,7 @@ sizedstar: '*' '[' SPACESYM ']' ':' INTEGER { $$ = new StarQuality; $$->size = *
   ;
 jumpdest: STARTSYM		{ VarnodeTpl *sym = $1->getVarnode(); $$ = new VarnodeTpl(ConstTpl(ConstTpl::j_curspace),sym->getOffset(),ConstTpl(ConstTpl::j_curspace_size)); delete sym; }
   | ENDSYM			{ VarnodeTpl *sym = $1->getVarnode(); $$ = new VarnodeTpl(ConstTpl(ConstTpl::j_curspace),sym->getOffset(),ConstTpl(ConstTpl::j_curspace_size)); delete sym; }
+  | NEXT2SYM		{ VarnodeTpl *sym = $1->getVarnode(); $$ = new VarnodeTpl(ConstTpl(ConstTpl::j_curspace),sym->getOffset(),ConstTpl(ConstTpl::j_curspace_size)); delete sym; }
   | INTEGER			{ $$ = new VarnodeTpl(ConstTpl(ConstTpl::j_curspace),ConstTpl(ConstTpl::real,*$1),ConstTpl(ConstTpl::j_curspace_size)); delete $1; }
   | BADINTEGER                  { $$ = new VarnodeTpl(ConstTpl(ConstTpl::j_curspace),ConstTpl(ConstTpl::real,0),ConstTpl(ConstTpl::j_curspace_size)); yyerror("Parsed integer is too big (overflow)"); }
   | INTEGER '[' SPACESYM ']'	{ AddrSpace *spc = $3->getSpace(); $$ = new VarnodeTpl(ConstTpl(spc),ConstTpl(ConstTpl::real,*$1),ConstTpl(ConstTpl::real,spc->getAddrSize())); delete $1; }
@@ -221,6 +226,7 @@ specificsymbol: VARSYM		{ $$ = $1; }
   | OPERANDSYM			{ $$ = $1; }
   | STARTSYM			{ $$ = $1; }
   | ENDSYM			{ $$ = $1; }
+  | NEXT2SYM			{ $$ = $1; }
   ;
 paramlist: /* EMPTY */		{ $$ = new vector<ExprTree *>; }
   | expr			{ $$ = new vector<ExprTree *>; $$->push_back($1); }
@@ -749,6 +755,9 @@ int4 PcodeSnippet::lex(void)
       case SleighSymbol::end_symbol:
 	yylval.endsym = (EndSymbol *)sym;
 	return ENDSYM;
+	case SleighSymbol::next2_symbol:
+	yylval.next2sym = (Next2Symbol *)sym;
+	return NEXT2SYM;
       case SleighSymbol::label_symbol:
 	yylval.labelsym = (LabelSymbol *)sym;
 	return LABELSYM;
@@ -793,13 +802,15 @@ void PcodeSnippet::addOperand(const string &name,int4 index)
   addSymbol(sym);
 }
 
-int yylex(void) {
+int pcodelex(void) {
   return pcode->lex();
 }
 
-int yyerror(const char *s)
+int pcodeerror(const char *s)
 
 {
   pcode->reportError((const Location *)0,s);
   return 0;
 }
+
+} // End namespace ghidra
