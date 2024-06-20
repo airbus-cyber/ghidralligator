@@ -1,0 +1,52 @@
+name: Check the integrity of the Ghidra source files
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    env:
+      GHIDRA_VERSION: 11.0.3
+      GHIDRA_RELEASE_DATE: 20240410
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Ghidra release
+        run: wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${{ env.GHIDRA_VERSION }}_build/ghidra_${{ env.GHIDRA_VERSION }}_PUBLIC_${{ env.GHIDRA_RELEASE_DATE }}.zip --no-show-progress
+
+      - name: Unzip Ghidra release
+        run: unzip ghidra_${{ env.GHIDRA_VERSION }}_PUBLIC_${{ env.GHIDRA_RELEASE_DATE }}.zip
+
+      - name: Check SHA256 for decompiler source files
+        run: |
+          find ./ -iname "*" -type f -not -path "./com_*" -exec sha256sum {} + >> ${{ github.workspace }}/sha256sum_source.txt
+          cd ../ghidra_${{ env.GHIDRA_VERSION }}_PUBLIC/Ghidra/Features/Decompiler/src/decompile/cpp/
+          echo "# ghidra source files" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          sha256sum -c ${{ github.workspace }}/sha256sum_source.txt >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        working-directory: ./src/
+
+      - name: Check SHA256 for .sla files
+        if: success() || failure()
+        run: |
+          for i in $(ls ./specfiles/*); do 
+            find ./ghidra_${{ env.GHIDRA_VERSION }}_PUBLIC/ -iname $(basename $i) -exec sha256sum {} + | sed -E 's|(.+)(\s+\./.+/)([^/]+)$|\1 \3|' >> ${{ github.workspace }}/sha256sum_specfiles.txt
+          done
+          cd ./specfiles/
+          echo "# processor .sla files" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          sha256sum -c ${{ github.workspace }}/sha256sum_specfiles.txt >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
