@@ -75,8 +75,10 @@ void memory_free_tmp_permissions() {
                 idx2free = idx;
                 if (sec.permissions != NULL) {
                     free(sec.permissions);
+                } else {
+                    break;
                 }
-                break;
+                free(sec.permissions);
             }
             idx++;
         }
@@ -111,7 +113,7 @@ bool virtual_memory_allocate(size_t buff_size, uint64_t buff_va, uint8_t buff_pe
   }
 
   NewSection.bFreeAfterEmu = delete_after_emu;
-  memset(NewSection.permissions, buff_perms, NewSection.size);
+  memset(NewSection.permissions, buff_perms, 10000);
   G_MEMORY_INFO.sections.push_back(NewSection);
   log_debug("virtual_memory_allocate: New buffer allocated at 0x%lx size: 0x%lx\n", NewSection.virtual_address, NewSection.size);
   res = true;
